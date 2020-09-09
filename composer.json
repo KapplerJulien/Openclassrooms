@@ -1,0 +1,9 @@
+{
+    "autoload": {
+        "psr-4": {
+          "Projet5Oc\\src\\": "src/",
+          "Projet5Oc\\config\\":"config/"
+        }
+      
+    }
+}
