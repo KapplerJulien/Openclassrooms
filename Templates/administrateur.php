@@ -1,8 +1,5 @@
 <?php
-
-$this->title = "Déconnexion";
-
-session_destroy();
+$this->title = "Inscription"; 
 
 ?>
 <!-- Page Header -->
@@ -12,10 +9,10 @@ session_destroy();
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h1>Clean Blog</h1>
+                    <h1>Espace Administateur</h1>
                     <span class="subheading">A Blog Theme by Start Bootstrap</span>
                 </div>
                 </div>
             </div>
             </div>
-        </header>
+</header>
