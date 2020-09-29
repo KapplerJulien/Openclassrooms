@@ -3,20 +3,7 @@
 $this->title = "Connexion";
 
 ?>
-<!-- Page Header -->
-<header class="masthead" style="background-image: url('img/home-bg.jpg')">
-            <div class="overlay"></div>
-            <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="site-heading">
-                    <h1>Connexion</h1>
-                    <span class="subheading">Page de connexion</span>
-                </div>
-                </div>
-            </div>
-            </div>
-        </header>
+
 <?php 
     if(isset($testConnexion['errorLogin'])){
         echo $testConnexion['errorLogin'];

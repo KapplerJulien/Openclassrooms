@@ -1,18 +1,30 @@
 <?php
-$this->title = "Inscription"; 
+$this->title = "Administrateur"; 
 
 ?>
-<!-- Page Header -->
-<header class="masthead" style="background-image: url('img/home-bg.jpg')">
-            <div class="overlay"></div>
-            <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="site-heading">
-                    <h1>Espace Administateur</h1>
-                    <span class="subheading">A Blog Theme by Start Bootstrap</span>
-                </div>
-                </div>
+
+<?php
+
+    foreach ($comments as $comment)
+    {
+        ?>
+        <p><?= htmlspecialchars($comment->getPostName());?> </p>
+        <p><?= htmlspecialchars($comment->getContent());?> </p>
+        <p><?= htmlspecialchars($comment->getCreatedAt());?> </p>
+        <p><?= htmlspecialchars($comment->getAuthor());?> </p>
+
+        <form id='formReplyComment' action="../public/index.php?route=ReplyComment&idComment=<?= htmlspecialchars($comment->getId());?>" method='post'>
+            <div class="formValidationButton">
+                <input type="submit" name="validationButton" id="validationButton" value="Valider">
             </div>
+
+            <div class="formRefusalButton">
+                <input type="submit" name="refusalButton" id="refusalButton" value="Refuser">
             </div>
-</header>
+        </form>
+        <?php
+    }
+
+?>
+
+

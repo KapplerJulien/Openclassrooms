@@ -19,9 +19,6 @@
                     <a class="nav-link" href="../public/index.php?route=home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="../public/index.php?route=post">Post</a>
                 </li>
                 <?php
@@ -41,6 +38,24 @@
                 </ul>
             </div>
         </nav>
+        <!-- Page Header -->
+        <header class="masthead" style="background-image: url('img/home-bg.jpg')">
+            <div class="overlay"></div>
+            <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1> <?php 
+                        // var_dump($title);
+                        echo $title 
+                    ?> 
+                    </h1>
+                    <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                </div>
+                </div>
+            </div>
+            </div>
+        </header>
 
         <div id="content">
             <?= $content ?>
