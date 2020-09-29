@@ -37,26 +37,8 @@ class Router
                     $this->frontController->deconnexion();
                 } elseif($route === 'post'){
                     $this->frontController->post();
-                } elseif($route === 'auteur'){
-                    $this->frontController->auteur();
-                } elseif($route === 'contact'){
-                    $this->frontController->contact();
-                } elseif($route === 'article'){
-                    $this->frontController->article($this->request->getGet()->get('articleId'));
-                } elseif($route === 'nouvelArticle'){
-                    $this->frontController->nouvelArticle();
-                } elseif($route === 'ajoutArticle'){
-                    $this->frontController->ajoutArticle($this->request->getPost());
-                } elseif($route === 'suppressionArticle'){
-                    $this->frontController->suppressionArticle($this->request->getGet()->get('articleId'));
-                } elseif($route === 'pageModifArticle'){
-                    // var_dump($this->request->getGet()->get('articleId'));
-                    $this->frontController->pageModifArticle($this->request->getGet()->get('articleId'));
-                } elseif($route === 'modifArticle'){
-                    $this->frontController->modifArticle($this->request->getPost(), $this->request->getGet()->get('articleId'));
-                } elseif($route === 'commentaire'){
-                    $this->frontController->commentaireArticle($this->request->getPost(), $this->request->getGet()->get('articleId'));
                 } else {
+                    // $this->frontController->home();
                     $this->errorController->errorNotFound();
                 }
             }
@@ -66,8 +48,11 @@ class Router
         }
         catch (Exception $e)
         {
+            // var_dump($route);
+            // var_dump('errorServer');
             // var_dump($_SESSION);
             $this->errorController->errorServer();
+            // $this->frontController->home();
         }
     }
 }
