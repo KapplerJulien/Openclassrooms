@@ -11,8 +11,8 @@ class UserDAO extends DAO
         $db = new DAO();
         $connexion = $db->getConnection();
         $sql = 'INSERT INTO Utilisateur ( NomUtilisateur, PrenomUtilisateur, AdresseUtilisateur, Adresse2Utilisateur, EtageUtilisateur, NumBatimentUtilisateur, CodePostaleUtilisateur, VilleUtilisateur, TelUtilisateur, MailUtilisateur, VerifMailUtilisateur, PseudoUtilisateur, MdpUtilisateur, IdTypeUtilisateur) 
-        VALUES ("","","","",0,0,05000,"",0000000000,"",true,"'.$post->get('pseudo').'" ,"'.$post->get('password').'" ,2)';
-        var_dump($sql);
+        VALUES ("'.$post->get('nom').'","'.$post->get('prenom').'","","",0,0,05000,"",0000000000,"'.$post->get('email').'",true,"'.$post->get('pseudo').'" ,"'.password_hash($post->get('password'),PASSWORD_BCRYPT).'" ,2);';
+        // var_dump($sql);
         $data = $connexion->query($sql);
     }
 
@@ -20,18 +20,34 @@ class UserDAO extends DAO
     {
         $db = new DAO();
         $connexion = $db->getConnection();
-        $sql = 'Select IdUtilisateur, MdpUtilisateur from utilisateur where pseudoUtilisateur ="'.$post->get('pseudo').'"';
+        $sql = 'Select IdUtilisateur, MdpUtilisateur, IdTypeUtilisateur from utilisateur where pseudoUtilisateur ="'.$post->get('pseudo').'";';
         $data = $connexion->query($sql);
         $result = $data->fetch();
-        // var_dump($result);
-        // var_dump($post->get('motdepasse'));
-        if($post->get('motdepasse') === $result['MdpUtilisateur']){
+        //var_dump($result);
+        //var_dump($post->get('motdepasse'));
+        /**if($post->get('motdepasse') === $result['MdpUtilisateur']){
             $isPasswordValid = true;
-        }
-        // $isPasswordValid = password_verify($post->get('motdepasse'), $result['MdpUtilisateur']);
+        } else {
+            $isPasswordValid = false;
+        }*/
+        $idTypeUtilisateur = $result['IdTypeUtilisateur'];
+        $isPasswordValid = password_verify($post->get('motdepasse'), $result['MdpUtilisateur']);
         return [
             'result' => $result,
-            'isPasswordValid' => $isPasswordValid
+            'isPasswordValid' => $isPasswordValid,
+            'IdTypeUtilisateur' => $idTypeUtilisateur
+        ];
+    }
+
+    public function getCompteAteur($id){
+        $db = new DAO();
+        $connexion = $db->getConnection();
+        $sql = 'Select NomUtilisateur, PrenomUtilisateur, CodePostaleUtilisateur, VilleUtilisateur, MailUtilisateur from utilisateur where IdUtilisateur = '.$id.';';
+        // var_dump($sql);
+        $data = $connexion->query($sql);
+        $result = $data->fetch();
+        return [
+            'result' => $result
         ];
     }
 }

@@ -3,6 +3,7 @@ $this->title = "Post";
 
 ?>
 
+
 <?php
             foreach ($articles as $article)
             {
