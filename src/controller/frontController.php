@@ -56,7 +56,6 @@ class FrontController extends Controller
     public function article($articleId){
         $article = $this->postDAO->getArticle($articleId);
         $idUtilisateur = $this->session->get('id');
-        $comments = $this->commentDAO->getArticleComment($articleId);
         if(isset($idUtilisateur)){
             $connect = True;
         } else {
@@ -64,8 +63,7 @@ class FrontController extends Controller
         }
         return $this->view->render('article', [
             'article' => $article,
-            'connect' => $connect,
-            'comments' => $comments
+            'connect' => $connect
         ]);
     }     
 
@@ -121,6 +119,7 @@ class FrontController extends Controller
         if($idTypeUtilisateur == 2){
             // echo('Je passe dans le if IdType');
             $compteAuteur = $this->userDAO->getCompteAuteur($this->session->get('id'));
+
             $articlesId = $this->postDAO->getArticleAuteur($this->session->get('id'));
             return $this->view->render('auteur', [
             'articlesId' => $articlesId,
@@ -128,11 +127,7 @@ class FrontController extends Controller
             ]);
         } else {
             // echo('Je passe dans le else IdType');
-            $commentaireAttente = $this->commentDAO->getComWaiting();
-            // var_dump($commentaireAttente);
-            return $this->view->render('administrateur', [
-                'comments' => $commentaireAttente
-            ]);
+            return $this->view->render('administrateur');
         }
     }
 
@@ -181,38 +176,6 @@ class FrontController extends Controller
         return $this->view->render('auteur', [
             'articlesId' => $articlesId,
             'compteAuteur' => $compteAuteur
-        ]);
-    }
-
-    public function commentaireArticle($post, $articleId){
-        if($post->get('boutonVal')) {
-            // var_dump($post);
-            $ajout = $this->postDAO->addCom($post, $articleId, $this->session->get('id'));
-            $article = $this->postDAO->getArticle($articleId);
-            $comments = $this->commentDAO->getArticleComment($articleId);
-            $connect = True;
-            return $this->view->render('article', [
-                'article' => $article,
-                'connect' => $connect,
-                'comments' => $comments
-            ]);
-        }
-    }
-
-    public function changeUser($post){
-        if($post->get('validationButton')){
-            $changeUser = $this->userDAO->setUser($post, $this->session->get('id'));
-            $compteAuteur = $this->userDAO->getCompteAuteur($this->session->get('id'));
-            $articlesId = $this->postDAO->getArticleAuteur($this->session->get('id'));
-            return $this->view->render('auteur', [
-            'articlesId' => $articlesId,
-            'compteAuteur' => $compteAuteur
-            ]);
-        }
-        $compteAuteur = $this->userDAO->getCompteAuteur($this->session->get('id'));
-        var_dump($compteAuteur);
-        return $this->view->render('changeUser', [
-            'users' => $compteAuteur
         ]);
     }
 }

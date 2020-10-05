@@ -50,8 +50,10 @@ class UserDAO extends DAO
             'result' => $result,
             'isPasswordValid' => $isPasswordValid,
             'IdTypeUtilisateur' => $idTypeUtilisateur
+
         ];
     }
+
 
     public function getCompteAuteur($id){
         $db = new DAO();

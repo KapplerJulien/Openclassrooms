@@ -5,6 +5,7 @@ $this->title = "Inscription";
 
 
 <div>
+
 <?php
     if(!isset($testRegister['errorRegister'])){   
 ?>
@@ -41,5 +42,6 @@ $this->title = "Inscription";
 <?php
     }
 ?>
+
     <a href="../public/index.php">Retour à l'accueil</a>
 </div>
