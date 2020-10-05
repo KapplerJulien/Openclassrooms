@@ -22,7 +22,7 @@ class UserDAO extends DAO
         $sql = 'select IdUtilisateur from utilisateur where PseudoUtilisateur = "'.$post->get('pseudo').'";';
         $data = $connexion->query($sql);
         $result = $data->fetch();
-        var_dump($result);
+        // var_dump($result);
         if($result){
             return False;
         } else {
