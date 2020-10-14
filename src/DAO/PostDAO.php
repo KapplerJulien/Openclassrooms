@@ -14,6 +14,7 @@ class PostDAO extends DAO
         $article->setContent($row['ContenuPost']);
         $article->setAuthor($row['AuteurPost']);
         $article->setCreatedAt($row['DateCreationPost']);
+        $post->setChapo($row['ChapoPost']);
         return $article;
     }
 
