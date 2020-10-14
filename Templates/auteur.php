@@ -14,11 +14,11 @@ foreach ($authorAccount as $info){
     // Modifier getter et setter de User.
     ?>
     
-                <p>Votre nom : <?= htmlspecialchars($info['NomUtilisateur']);?></p>
-                <p>Votre prénom : <?= htmlspecialchars($info['PrenomUtilisateur']);?></p>
-                <p>Votre code postale : <?= htmlspecialchars($info['CodePostaleUtilisateur']);?></p>
-                <p>Votre ville : <?= htmlspecialchars($info['VilleUtilisateur']);?></p>
-                <p>Votre adresse mail : <?= htmlspecialchars($info['MailUtilisateur']);?></p>
+                <p>Votre nom : <?= $info['NomUtilisateur'];?></p>
+                <p>Votre prénom : <?= $info['PrenomUtilisateur'];?></p>
+                <p>Votre code postale : <?= $info['CodePostaleUtilisateur'];?></p>
+                <p>Votre ville : <?= $info['VilleUtilisateur'];?></p>
+                <p>Votre adresse mail : <?= $info['MailUtilisateur'];?></p>
                 <form id="formChangeUser" action="../public/index.php?route=editUser" method="post">
                     <input type="submit" class="btn btn-primary" name="editUserButton" id="editUserButton" value="Modifier son compte">
                 </form>
@@ -37,14 +37,14 @@ foreach ($articlesId as $article)
             {
                 ?>
                 <div>
-                    <h2 class="section-head"><a href="../public/index.php?route=article&articleId=<?= htmlspecialchars($article->getId());?>"><?= htmlspecialchars($article->getTitle());?></a></h2>
-                    <h3 class="post-subtitle"><?= htmlspecialchars($article->getChapo());?></h3>
-                    <p><?= htmlspecialchars($article->getContent());?></p>
-                    <blockquote class="blockquote">Rédigé par <?= htmlspecialchars($article->getAuthor());?> ,Modifié le : <?= htmlspecialchars($article->getCreatedAt());?></blockquote>
-                    <form id="formRemPost" action="../public/index.php?route=pageEditArticle&articleId=<?= htmlspecialchars($article->getId());?>" method="post">
+                    <h2 class="section-head"><a href="../public/index.php?route=article&articleId=<?= $article->getId();?>"><?= $article->getTitle();?></a></h2>
+                    <h3 class="post-subtitle"><?= $article->getChapo();?></h3>
+                    <p><?= $article->getContent();?></p>
+                    <blockquote class="blockquote">Rédigé par <?= $article->getAuthor();?> ,Modifié le : <?= $article->getCreatedAt();?></blockquote>
+                    <form id="formRemPost" action="../public/index.php?route=pageEditArticle&articleId=<?= $article->getId();?>" method="post">
                         <input type="submit" class="btn btn-primary" name="editPostButton" id="editPostButton" value="Modifier l'article">
                     </form>
-                    <form id="formEditPost" action="../public/index.php?route=remArticle&articleId=<?= htmlspecialchars($article->getId());?>" method="post">
+                    <form id="formEditPost" action="../public/index.php?route=remArticle&articleId=<?= $article->getId();?>" method="post">
                         <input type="submit" class="btn btn-primary" name="remPostButton" id="remPostButton" value="Supprimer l'article">
                     </form>
                 </div>
