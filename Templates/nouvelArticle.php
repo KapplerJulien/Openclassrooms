@@ -1,24 +1,34 @@
 <?php
 $this->title = "Nouvel article"; 
+$this->userConnect = $userConnect;
 
 ?>
 
 
-
-        <form id="formulaireNouvelArticle" action="../public/index.php?route=ajoutArticle" method="post" >
-            <div class="formNouvelArticle">
-                    <label for="titre">Titre :</label> </br>
-                    <input type="text" name="titre" id="titre" required>
-                    <br>
-                    <label for="chapo">Chapo:</label> </br>
-                    <input type="text" name="chapo" id="chapo" required>
-                    <br>
-                    <label for="contenu">Contenu :</label> </br>
-                    <textarea name="contenu" id="contenu" cols="40" rows="10" aria-invalid="false"> </textarea>
-                    
-            </div>
-            </br>
-            <div class="formNouvelArticleBoutonVal">
-                <input type="submit" name="boutonVal" id="boutonVal" value="Envoyez">
-            </div>
-        </form>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <form id="formulaireNouvelArticle" action="../public/index.php?route=addArticle" method="post" >
+                
+                <div class="form-group floating-label-form-group controls">
+                        <label>Titre : </label>
+                        <input type="text" class="form-control" placeholder="Titre" name="titre" id="titre" required data-validation-required-message="Veuillez entrer votre titre.">
+                        <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group floating-label-form-group controls">
+                        <label>Chapo : </label>
+                        <input type="text" class="form-control" placeholder="Chapo" name="chapo" id="chapo" required data-validation-required-message="Veuillez entrer votre chapo.">
+                        <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group floating-label-form-group controls">
+                        <label>Contenu : </label>
+                        <textarea class="form-control" name="contenu" id="contenu" cols="40" rows="10" aria-invalid="false">Contenu de l'article.</textarea>
+                        <p class="help-block text-danger"></p>
+                </div>
+                <div class="formNouvelArticleBoutonVal">
+                    <input type="submit" class="btn btn-primary" name="boutonVal" id="boutonVal" value="Envoyez">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
