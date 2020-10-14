@@ -42,7 +42,7 @@ $this->title = "Connexion";
             </div>
         </form>
 
-        <a class="nav-link" href="../public/index.php?route=inscription"><i></i>Inscription </a>
+        <a class="nav-link" href="../public/index.php?route=register"><i></i>Inscription </a>
 
 
     

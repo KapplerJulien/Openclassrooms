@@ -27,7 +27,7 @@ class Router
                 if($route === 'connexion'){
                     $this->frontController->connexion();
                 }
-                elseif($route === 'inscription'){
+                elseif($route === 'register'){
                     $this->frontController->register($this->request->getPost());                    
                 } elseif($route === 'login'){
                     $this->frontController->login($this->request->getPost());

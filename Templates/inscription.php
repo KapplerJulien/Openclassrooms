@@ -50,8 +50,8 @@ $this->title = "Inscription";
             <input type="submit" class="btn btn-primary" value="Inscription" id="submit" name="submit">
         </form>
 <?php
-    } else {
-        echo $testRegister['errorRegister'];
+    } else { ?>
+        <?= $testRegister['errorRegister'];
         // var_dump($infoRegister);
 ?>
 
