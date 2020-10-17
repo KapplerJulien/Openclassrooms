@@ -29,6 +29,8 @@ class Post
      */
     private $createdAt;
 
+    private $chapo;
+
     /**
      * @return int
      */
@@ -107,6 +109,16 @@ class Post
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+    }
+
+    public function getChapo()
+    {
+        return $this->chapo;
+    }
+
+    public function setChapo($chapo)
+    {
+        $this->chapo = $chapo;
     }
 }
 ?>

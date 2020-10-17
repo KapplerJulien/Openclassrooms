@@ -14,6 +14,7 @@ class PostDAO extends DAO
         $article->setContent($row['ContenuPost']);
         $article->setAuthor($row['AuteurPost']);
         $article->setCreatedAt($row['DateCreationPost']);
+        $post->setChapo($row['ChapoPost']);
         return $article;
     }
 
@@ -48,33 +49,34 @@ class PostDAO extends DAO
         return $article;
     }
 
-    public function getArticleAuteur($idAuteur)
+    public function getArticleAuthor($idAuteur)
     {
         $db = new DAO();
         $connexion = $db->getConnection();
-        $sql = 'SELECT IdPost, NomPost, ContenuPost, AuteurPost, DateCreationPost FROM post where IdUtilisateur = '.$idAuteur.' ORDER BY IdPost DESC;';
-        $result = $connexion->query($sql);
+        $sql = 'SELECT IdPost, NomPost, ContenuPost, AuteurPost, DateDerniereModifPost, ChapoPost FROM post where IdUtilisateur = '.$idAuteur.' ORDER BY IdPost DESC;';
+        $data = $connexion->query($sql);
         $articles = [];
-        foreach ($result as $row){
+        foreach ($data as $row){
             $articleId = $row['IdPost'];
             $articles[$articleId] = $this->buildObject($row);
         }
-        $result->closeCursor();
+        $data->closeCursor();
         return $articles;
     }
 
-    public function ajouterArticle($post, $idAuteur){
+    public function addArticle($post, $authorId){
         $db = new DAO();
         $connexion = $db->getConnection();
-        $sqlAuteurPost = 'select NomUtilisateur from utilisateur where IdUtilisateur ='.$idAuteur.';';
-        $dataAuteurPost = $connexion->query($sqlAuteurPost);
-        $auteurPost = $dataAuteurPost->fetch();
+        $sqlAuthorPost = 'select NomUtilisateur from utilisateur where IdUtilisateur ='.$authorId.';';
+        $dataAuthorPost = $connexion->query($sqlAuthorPost);
+        $authorPost = $dataAuthorPost->fetch();
         // var_dump($auteurPost);
         $date = date('Y-m-d');
         $sql = 'INSERT INTO post ( NomPost, ChapoPost, ContenuPost, AuteurPost, DateCreationPost, DateDerniereModifPost, IdUtilisateur) 
-        VALUES ("'.$post->get('titre').'","'.$post->get('chapo').'","'.$post->get('contenu').'","'.$auteurPost['NomUtilisateur'].'","'.$date.'","'.$date.'",'.$idAuteur.');';
+        VALUES ("'.$post->get('titre').'","'.$post->get('chapo').'","'.$post->get('contenu').'","'.$authorPost['NomUtilisateur'].'","'.$date.'","'.$date.'",'.$authorId.');';
         // var_dump($sql);
         $data = $connexion->query($sql);
+        $data->closeCursor();
     }
 
     public function suppressionArticle($articleId){
