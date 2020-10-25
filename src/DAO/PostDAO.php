@@ -79,11 +79,12 @@ class PostDAO extends DAO
         $data->closeCursor();
     }
 
-    public function suppressionArticle($articleId){
+    public function remArticle($articleId){
         $db = new DAO();
         $connexion = $db->getConnection();
         $sql = 'delete from post where IdPost = '.$articleId.';';
         $data = $connexion->query($sql);
+        $data->closeCursor();
     }
 
     public function editArticle($post, $articleId){

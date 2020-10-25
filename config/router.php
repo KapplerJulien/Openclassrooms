@@ -47,8 +47,8 @@ class Router
                     $this->frontController->pageAddArticle();
                 } elseif($route === 'addArticle'){
                     $this->frontController->addArticle($this->request->getPost());
-                } elseif($route === 'suppressionArticle'){
-                    $this->frontController->suppressionArticle($this->request->getGet()->get('articleId'));
+                } elseif($route === 'remArticle'){
+                    $this->frontController->remArticle($this->request->getGet()->get('articleId'));
                 } elseif($route === 'pageEditArticle'){
                     // var_dump($this->request->getGet()->get('articleId'));
                     $this->frontController->pageEditArticle($this->request->getGet()->get('articleId'));
