@@ -86,13 +86,25 @@ class PostDAO extends DAO
         $data = $connexion->query($sql);
     }
 
-    public function modifArticle($post, $articleId){
+    public function editArticle($post, $articleId){
         $db = new DAO();
         $connexion = $db->getConnection();
         $date = date('Y-m-d');
         $sql = 'update post set NomPost = "'.$post->get('titre').'", ChapoPost = "'.$post->get('chapo').'", ContenuPost = "'.$post->get('contenu').'", AuteurPost = "'.$post->get('auteur').'", DateDerniereModifPost = "'.$date.'"
         where IdPost = '.$articleId.';';
         $data = $connexion->query($sql);
+        $data->closeCursor();
+    }
+
+    public function getEditArticle($articleId){
+        $db = new DAO();
+        $connexion = $db->getConnection();
+        $sql = 'SELECT IdPost, NomPost, ChapoPost, ContenuPost, AuteurPost FROM post where IdPost = '.$articleId.';';
+        // var_dump($sql);
+        $data = $connexion->query($sql);
+        $result = $data->fetch();
+        $data->closeCursor();
+        return $result;
     }
 
     public function getArticleModifAuteur($articleId){
