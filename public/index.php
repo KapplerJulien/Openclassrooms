@@ -1,10 +1,10 @@
 <?php
 // require 'C:\wamp64\www\Projet5Oc\config/dev.php';
 require 'C:\wamp64\www\Projet5Oc\vendor/autoload.php';
-require 'C:\wamp64\www\Projet5Oc\config/Css.php';
+require 'C:\wamp64\www\Projet5Oc\Templates/paramPage/css.html';
 
 session_start();
-$router = new \Projet5Oc\config\router();
+$router = new \Projet5Oc\config\Router();
 $router->run();
 
 /**try{
