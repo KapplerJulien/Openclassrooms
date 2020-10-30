@@ -8,7 +8,8 @@ La partie administration est présente aussi car sur les articles, les personnes
 ## Récupération du code
 
 Pour récupérer le code présent dans le git, au dessus du readme que vous être en train de lire, il y a les fichiers et dossiers, et juste au dessus à peine sur la droite, il y a un bouton "Code", cliquez dessus et vous pouvez télécharger le projet au format .ZIP
-Si vous possédez git sur votre ordinateur et que vous voulez faire une git clone, je vous mets directement le lien ici : https://github.com/KapplerJulien/Openclassrooms.git. 
+
+Si vous possédez git sur votre ordinateur et que vous voulez faire un git clone, je vous mets directement le lien ici : https://github.com/KapplerJulien/Openclassrooms.git. 
 
 ## Installation des logiciels pour le bon fonctionnement du site
 
