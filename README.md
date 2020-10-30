@@ -53,7 +53,7 @@ Je vous mets à disposition les pseudos et mot de passe présent dans la base de
 
 Comptes utilisateurs test : 
 
-Pseudo : MonteR
+Pseudo : MonteR /n
 Mdp : @ezoTi48
 Type : Auteur 
 
