@@ -1,0 +1,11 @@
+.content {
+    font-size: 16px;
+}
+
+.cv {
+    color : #0000FF;
+}
+
+a:hover {
+    color : #FF0000;
+}
