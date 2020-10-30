@@ -18,7 +18,7 @@ Si tout se passe bien, lorsque vous lancez WAMPServer il y a un petit icône dan
 Si tout est ok, faites un clic gauche sur l'icône de WAMPServer, regardez la version de PHP et retenez la. D'ailleurs, si jamais vous voulez la changer, mettez votre souris sur PHP, puis versions et selectionnez la version que vous souhaitez.
 
 Après Wamp Server, on va avoir besoin de composer. Trouvable ici : [Composer](https://getcomposer.org/).
-Composer va vou demander votre version de PHP, c'est pour cela que je vous ai demandé de la retenir.
+Composer va vous demander votre version de PHP, c'est pour cela que je vous ai demandé de la retenir.
 Faites l'installation classique et tout se passera bien.
 
 ## Installation de la base de données
