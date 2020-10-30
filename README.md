@@ -8,16 +8,16 @@ La partie administration est présente aussi car sur les articles, les personnes
 ## Récupération du code
 
 Pour récupérer le code présent dans le git, au dessus du readme que vous être en train de lire, il y a les fichiers et dossiers, et juste au dessus à peine sur la droite, il y a un bouton "Code", cliquez dessus et vous pouvez télécharger le projet au format .ZIP
-Si vous possédez git sur votre ordinateur et que vous voulez faire une git clone, je vous mets directement le lien ici : [GitHub](https://github.com/KapplerJulien/Openclassrooms.git). 
+Si vous possédez git sur votre ordinateur et que vous voulez faire une git clone, je vous mets directement le lien ici : https://github.com/KapplerJulien/Openclassrooms.git. 
 
 ## Installation des logiciels pour le bon fonctionnement du site
 
 Tout d'abord je vous préviens ici, ce tutoriel pour installer le site ne sera que pour la partie local (donc sur votre ordinateur) et fait avec le logiciel WAMPServer.
-Téléchargeable ici : [GitHub](https://www.wampserver.com/)
+Téléchargeable ici : [WampServer](https://www.wampserver.com/)
 Si tout se passe bien, lorsque vous lancez WAMPServer il y a un petit icône dans vos icônes en bas à droite, un W dans une case, si c'est vert, tout est ok, sinon je vous conseille de chercher votre erreur sur internet, il en existe beaucoup trop pour que je puisse tout vous expliquer ici.
 Si tout est ok, faites un clic gauche sur l'icône de WAMPServer, regardez la version de PHP et retenez la. D'ailleurs, si jamais vous voulez la changer, mettez votre souris sur PHP, puis versions et selectionnez la version que vous souhaitez.
 
-Après Wamp Server, on va avoir besoin de composer. Trouvable ici : [GitHub](https://getcomposer.org/).
+Après Wamp Server, on va avoir besoin de composer. Trouvable ici : [Composer](https://getcomposer.org/).
 Composer va vou demander votre version de PHP, c'est pour cela que je vous ai demandé de la retenir.
 Faites l'installation classique et tout se passera bien.
 
