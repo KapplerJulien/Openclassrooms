@@ -53,14 +53,14 @@ Je vous mets à disposition les pseudos et mot de passe présent dans la base de
 
 Comptes utilisateurs test : 
 
-Pseudo : MonteR /n
-Mdp : @ezoTi48
-Type : Auteur 
+Pseudo : MonteR  
+Mdp : @ezoTi48  
+Type : Auteur   
 
-Pseudo : xibougta 
-Mdp : test
-Type : Auteur
+Pseudo : xibougta  
+Mdp : test  
+Type : Auteur  
 
-Pseudo : MarteM
-Mdp : #feaO570
-Type : Administrateur
+Pseudo : MarteM  
+Mdp : #feaO570  
+Type : Administrateur  
