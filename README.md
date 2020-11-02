@@ -47,6 +47,10 @@ Dans votre explorateur de fichier, allez dans "Ce PC", normalement si vous n'ave
 Puis allez dans Wamp64 ou 32 tout dépend la version que vous avez pris. Puis dans www, vous mettez le projet.
 Une fois mis ici, il suffit de retourner sur localhost dans votre page web. Puis il apparaitra dans "Vos projets", il suffira de cliquer dessus, puis de cliquer sur public.
 
+Et là... le site ne fonctionne pas, c'est normal ! Il reste une petite chose à faire. Dans le dossier "Templates" puis "paramPage" il faut modifier les liens dans le fichiers css.html. 
+Puis allez dans le dossier config, et il faut aussi modifier des liens dans le fichier index.php. 
+Normalement après tout cela le site fonctionnera
+
 ## Test du site
 
 Je vous mets à disposition les pseudos et mot de passe présent dans la base de données en tant que jeux d'essais, si jamais vous avez envie de tester.
