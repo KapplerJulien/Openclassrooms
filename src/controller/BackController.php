@@ -23,10 +23,12 @@ class BackController extends Controller
         $changeType = $this->commentDAO->setCommentType($post, $idComment);
         $commentaireAttente = $this->commentDAO->getComWaiting();
         $sumComment = $this->commentDAO->getSumComment('comWaiting',' ');
+        $userConnect = $this->testConnect();
         // var_dump($commentaireAttente);
         return $this->view->render('administrateur', 'adminPage', [
             'comments' => $commentaireAttente,
-            'sumComment' => $sumComment
+            'sumComment' => $sumComment,
+            'userConnect' => $userConnect
         ]); 
     }
 }   
