@@ -26,6 +26,16 @@ abstract class Controller
         $this->session = $this->request->getSession();
 
     }
+
+    public function testConnect(){
+        $testConnect = $this->session->get('id');
+        if($testConnect === null){
+            $userConnect = 'disconnect';
+        } else {
+            $userConnect = 'connect';
+        }
+        return $userConnect;
+    }
 }
 
 ?>

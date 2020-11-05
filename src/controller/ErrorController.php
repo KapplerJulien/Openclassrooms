@@ -18,12 +18,7 @@ class ErrorController extends Controller
 
     public function errorNotFound()
     {
-        $testConnect = $this->session->get('id');
-        if($testConnect === null){
-            $userConnect = ' ';
-        } else {
-            $userConnect = 'connect';
-        }
+        $userConnect = $this->testConnect();
         return $this->view->render('error_404', 'errorPage', [
             'userConnect' => $userConnect
         ]);
@@ -32,12 +27,7 @@ class ErrorController extends Controller
 
     public function errorServer()
     {
-        $testConnect = $this->session->get('id');
-        if($testConnect === null){
-            $userConnect = ' ';
-        } else {
-            $userConnect = 'connect';
-        }
+        $userConnect = $this->testConnect();
         return $this->view->render('error_500', 'errorPage', [
             'userConnect' => $userConnect
         ]);

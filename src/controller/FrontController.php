@@ -27,12 +27,7 @@ class FrontController extends Controller
     public function home()
     {
         // require 'C:\wamp64\www\Projet5Oc/Templates/home.php';
-        $testConnect = $this->session->get('id');
-        if($testConnect === null){
-            $userConnect = ' ';
-        } else {
-            $userConnect = 'connect';
-        }
+        $userConnect = $this->testConnect();
         return $this->view->render('home', 'mainPage', [
             'userConnect' => $userConnect
         ]);
@@ -42,12 +37,7 @@ class FrontController extends Controller
     {
         // require 'C:\wamp64\www\Projet5Oc/Templates/home.php';
         $articles = $this->postDAO->getArticles();
-        $testConnect = $this->session->get('id');
-        if($testConnect === null){
-            $userConnect = ' ';
-        } else {
-            $userConnect = 'connect';
-        }
+        $userConnect = $this->testConnect();
         return $this->view->render('post', 'mainPage', [
             'articles' => $articles,
             'userConnect' => $userConnect
@@ -56,7 +46,10 @@ class FrontController extends Controller
 
     public function account(){
         $idTypeUser = $this->session->get('typeUser');
-        $userConnect = 'connect';
+        $userConnect = $this->testConnect();
+        if($userConnect === 'disconnect'){
+            $this->home();
+        }
         if($idTypeUser == 2){
             // echo('Je passe dans le if IdType');
             $authorAccount = $this->userDAO->getAuthorAccount($this->session->get('id'));
@@ -79,12 +72,7 @@ class FrontController extends Controller
 
     public function connexion()
     {
-        $testConnect = $this->session->get('id');
-        if($testConnect === null){
-            $userConnect = ' ';
-        } else {
-            $userConnect = 'connect';
-        }
+        $userConnect = $this->testConnect();
         // require 'C:\wamp64\www\Projet5Oc/Templates/connexion.php';
         return $this->view->render('connexion', 'userPage', [
             'userConnect' => $userConnect
@@ -93,19 +81,17 @@ class FrontController extends Controller
 
     public function deconnexion(){
         session_destroy();
-        $userConnect = ' ';
+        $this->session->set('id', null);
+        // var_dump($this->session->get('id'));
+        $userConnect = $this->testConnect();
+        // var_dump($userConnect);
         return $this->view->render('home', 'mainPage', [
             'userConnect' => $userConnect,
         ]);
     }
 
     public function contact(){
-        $testConnect = $this->session->get('id');
-        if($testConnect === null){
-            $userConnect = ' ';
-        } else {
-            $userConnect = 'connect';
-        }
+        $userConnect = $this->testConnect();
         return $this->view->render('contact', 'mainPage', [
             'userConnect' => $userConnect
         ]);
@@ -116,11 +102,7 @@ class FrontController extends Controller
         $userId = $this->session->get('id');
         $comments = $this->commentDAO->getArticleComment($articleId);
         $sumComment = $this->commentDAO->getSumComment('postComment',$articleId);
-        if(isset($userId)){
-            $connect = True;
-        } else {
-            $connect = False;
-        }
+        $connect = $this->testConnect();
         return $this->view->render('article', 'mainPage', [
             'article' => $article,
             'connect' => $connect,
@@ -132,12 +114,7 @@ class FrontController extends Controller
     public function register(Parameter $post)
     {
         // var_dump("test");
-        $testConnect = $this->session->get('id');
-        if($testConnect === null){
-            $userConnect = ' ';
-        } else {
-            $userConnect = 'connect';
-        }
+        $userConnect = $this->testConnect();
         if($post->get('submit')) {
             $verifPseudo = $this->userDAO->verifPseudo($post);
             if($verifPseudo){
@@ -182,7 +159,7 @@ class FrontController extends Controller
             else {
                 // var_dump("je passe là (else)");
                 // var_dump([$post->get('pseudo')]);
-                $userConnect = 'noConnect';
+                $userConnect = $this->testConnect();
                 $errorLogin['errorLogin'] = 'Le pseudo et/ou le mot de passe sont incorrects.';
                 return $this->view->render('connexion', 'userPage', [
                     'post'=> $post,
@@ -193,7 +170,7 @@ class FrontController extends Controller
         }
         // var_dump('je sors');
         // echo($idTypeUtilisateur);
-        $userConnect = 'connect';
+        $userConnect = $this->testConnect();
         if($idTypeUser == 2){
             //  echo('Je passe dans le if IdType');
             $authorAccount = $this->userDAO->getAuthorAccount($this->session->get('id'));
@@ -219,7 +196,10 @@ class FrontController extends Controller
     }
 
     public function pageAddArticle(){
-        $userConnect = 'connect';
+        $userConnect = $this->testConnect();
+        if($userConnect === 'disconnect'){
+            $this->home();
+        }
         return $this->view->render('nouvelArticle', 'userPage', [
             'userConnect' => $userConnect
         ]);
@@ -235,7 +215,7 @@ class FrontController extends Controller
         }
         $authorAccount = $this->userDAO->getAuthorAccount($this->session->get('id'));
         $articlesId = $this->postDAO->getArticleAuthor($this->session->get('id'));
-        $userConnect = 'connect';
+        $userConnect = $this->testConnect();
         return $this->view->render('auteur', 'userPage', [
             'articlesId' => $articlesId,
             'authorAccount' => $authorAccount,
@@ -247,7 +227,7 @@ class FrontController extends Controller
         $remArticle = $this->postDAO->remArticle($articleId);
         $authorAccount = $this->userDAO->getAuthorAccount($this->session->get('id'));
         $articlesId = $this->postDAO->getArticleAuthor($this->session->get('id'));
-        $userConnect = 'connect';
+        $userConnect = $this->testConnect();
         return $this->view->render('auteur', 'userPage', [
             'articlesId' => $articlesId,
             'authorAccount' => $authorAccount,
@@ -258,7 +238,10 @@ class FrontController extends Controller
     public function pageEditArticle($articleId){
         $articlesId = $this->postDAO->getEditArticle($articleId);
         // var_dump($articlesId);
-        $userConnect = 'connect';
+        $userConnect = $this->testConnect();
+        if($userConnect === 'disconnect'){
+            $this->home();
+        }
         return $this->view->render('modifPost', 'userPage', [
             'articlesId' => $articlesId,
             'userConnect' => $userConnect
@@ -269,7 +252,7 @@ class FrontController extends Controller
         $editArticle = $this->postDAO->editArticle($post, $articleId);
         $authorAccount = $this->userDAO->getAuthorAccount($this->session->get('id'));
         $articlesId = $this->postDAO->getArticleAuthor($this->session->get('id'));
-        $userConnect = 'connect';
+        $userConnect = $this->testConnect();
         return $this->view->render('auteur', 'userPage', [
             'articlesId' => $articlesId,
             'authorAccount' => $authorAccount,
@@ -283,7 +266,7 @@ class FrontController extends Controller
             $ajout = $this->postDAO->addCom($post, $articleId, $this->session->get('id'));
             $article = $this->postDAO->getArticle($articleId);
             $comments = $this->commentDAO->getArticleComment($articleId);
-            $connect = True;
+            $connect = $this->testConnect();
             return $this->view->render('article', 'mainPage', [
                 'article' => $article,
                 'connect' => $connect,
@@ -297,7 +280,7 @@ class FrontController extends Controller
             $editUser = $this->userDAO->setUser($post, $this->session->get('id'));
             $authorAccount = $this->userDAO->getAuthorAccount($this->session->get('id'));
             $articlesId = $this->postDAO->getArticleAuthor($this->session->get('id'));
-            $userConnect = 'connect';
+            $userConnect = $this->testConnect();
             return $this->view->render('auteur', 'userPage', [
             'articlesId' => $articlesId,
             'authorAccount' => $authorAccount,
@@ -305,7 +288,10 @@ class FrontController extends Controller
             ]);
         }
         $authorAccount = $this->userDAO->getAuthorAccount($this->session->get('id'));
-        $userConnect = 'connect';
+        $userConnect = $this->testConnect();
+        if($userConnect === 'disconnect'){
+            $this->home();
+        }
         // var_dump($compteAuteur);
         return $this->view->render('changeUser', 'userPage', [
             'users' => $authorAccount,
