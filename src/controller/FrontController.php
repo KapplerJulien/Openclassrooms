@@ -102,10 +102,10 @@ class FrontController extends Controller
         $userId = $this->session->get('id');
         $comments = $this->commentDAO->getArticleComment($articleId);
         $sumComment = $this->commentDAO->getSumComment('postComment',$articleId);
-        $connect = $this->testConnect();
+        $userConnect = $this->testConnect();
         return $this->view->render('article', 'mainPage', [
             'article' => $article,
-            'connect' => $connect,
+            'userConnect' => $userConnect,
             'comments' => $comments,
             'sumComment' => $sumComment
         ]);
@@ -121,7 +121,7 @@ class FrontController extends Controller
                 // var_dump('register dans le if');
                 $this->userDAO->register($post);
                 $this->session->set('register', 'Votre inscription a bien été effectuée.');
-                header('Location: ../public/index.php'); 
+                // header('Location: ./index.php'); 
                 return $this->view->render('inscription', 'userPage', [
                     'userConnect' => $userConnect
                 ]);
@@ -263,14 +263,17 @@ class FrontController extends Controller
     public function commentArticle($post, $articleId){
         if($post->get('boutonVal')) {
             // var_dump($post);
-            $ajout = $this->postDAO->addCom($post, $articleId, $this->session->get('id'));
+            $ajout = $this->commentDAO->addCom($post, $articleId, $this->session->get('id'));
             $article = $this->postDAO->getArticle($articleId);
             $comments = $this->commentDAO->getArticleComment($articleId);
-            $connect = $this->testConnect();
+            $userConnect = $this->testConnect();
+            $sumComment = $this->commentDAO->getSumComment('postComment',$articleId);
+
             return $this->view->render('article', 'mainPage', [
                 'article' => $article,
-                'connect' => $connect,
-                'comments' => $comments
+                'userConnect' => $userConnect,
+                'comments' => $comments, 
+                'sumComment' => $sumComment
             ]);
         }
     }

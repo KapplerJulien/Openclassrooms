@@ -25,7 +25,7 @@ class Router
         $route = $this->request->getGet()->get('route');
         // var_dump($route);
         try{
-            if(isset($route))
+            if(isset($route) and $route != 'notFound')
             {
                 if($route === 'connexion'){
                     $this->frontController->connexion();

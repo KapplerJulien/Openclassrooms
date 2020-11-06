@@ -1,6 +1,6 @@
 <?php
 $this->title = "Article";
-$this->userConnect = $connect;
+$this->userConnect = $userConnect;
 
 ?>
 
@@ -74,7 +74,7 @@ $this->userConnect = $connect;
                 </div>
             <?php }
 
-            if ($connect === True){ ?>
+            if ($userConnect === 'connect'){ ?>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-md-10 mx-auto">

@@ -11,7 +11,7 @@ class UserDAO extends DAO
         $db = new DAO();
         $connexion = $db->getConnection();
         $sql = 'INSERT INTO Utilisateur ( NomUtilisateur, PrenomUtilisateur, AdresseUtilisateur, Adresse2Utilisateur, EtageUtilisateur, NumBatimentUtilisateur, CodePostaleUtilisateur, VilleUtilisateur, TelUtilisateur, MailUtilisateur, VerifMailUtilisateur, PseudoUtilisateur, MdpUtilisateur, IdTypeUtilisateur) 
-        VALUES ("'.$post->get('nom').'","'.$post->get('prenom').'","","",0,0,05000,"",0000000000,"'.$post->get('email').'",true,"'.$post->get('pseudo').'" ,"'.password_hash($post->get('password'),PASSWORD_BCRYPT).'" ,2);';
+        VALUES ("'.$post->get('nom').'","'.$post->get('prenom').'","","",0,0,0,"",0000000000,"'.$post->get('email').'",true,"'.$post->get('pseudo').'" ,"'.password_hash($post->get('password'),PASSWORD_BCRYPT).'" ,2);';
         // var_dump($sql);
         $data = $connexion->query($sql);
         $data->closeCursor();
@@ -20,7 +20,7 @@ class UserDAO extends DAO
     public function verifPseudo(Parameter $post){
         $db = new DAO();
         $connexion = $db->getConnection();
-        $sql = 'select IdUtilisateur from utilisateur where PseudoUtilisateur = "'.$post->get('pseudo').'";';
+        $sql = 'select IdUtilisateur from Utilisateur where PseudoUtilisateur = "'.$post->get('pseudo').'";';
         $data = $connexion->query($sql);
         $result = $data->fetch();
         $data->closeCursor();
@@ -36,7 +36,7 @@ class UserDAO extends DAO
     {
         $db = new DAO();
         $connexion = $db->getConnection();
-        $sql = 'Select IdUtilisateur, MdpUtilisateur, IdTypeUtilisateur from utilisateur where pseudoUtilisateur ="'.$post->get('pseudo').'";';
+        $sql = 'Select IdUtilisateur, MdpUtilisateur, IdTypeUtilisateur from Utilisateur where PseudoUtilisateur ="'.$post->get('pseudo').'";';
         $data = $connexion->query($sql);
         $result = $data->fetch();
         //var_dump($result);
@@ -59,7 +59,7 @@ class UserDAO extends DAO
     public function getAuthorAccount($userId){
         $db = new DAO();
         $connexion = $db->getConnection();
-        $sql = 'Select NomUtilisateur, PrenomUtilisateur, CodePostaleUtilisateur, VilleUtilisateur, MailUtilisateur from utilisateur where IdUtilisateur = '.$userId.';';
+        $sql = 'Select NomUtilisateur, PrenomUtilisateur, CodePostaleUtilisateur, VilleUtilisateur, MailUtilisateur from Utilisateur where IdUtilisateur = '.$userId.';';
         // var_dump($sql);
         $data = $connexion->query($sql);
         // var_dump($data->fetch());

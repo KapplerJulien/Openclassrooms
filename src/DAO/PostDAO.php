@@ -13,8 +13,8 @@ class PostDAO extends DAO
         $article->setTitle($row['NomPost']);
         $article->setContent($row['ContenuPost']);
         $article->setAuthor($row['AuteurPost']);
-        $article->setCreatedAt($row['DateCreationPost']);
-        $post->setChapo($row['ChapoPost']);
+        $article->setCreatedAt($row['DateDerniereModifPost']);
+        $article->setChapo($row['ChapoPost']);
         return $article;
     }
 
@@ -22,7 +22,7 @@ class PostDAO extends DAO
     {
         $db = new DAO();
         $connexion = $db->getConnection();
-        $sql = 'SELECT IdPost, NomPost, ContenuPost, AuteurPost, DateCreationPost FROM post ORDER BY IdPost DESC;';
+        $sql = 'SELECT IdPost, NomPost, ContenuPost, AuteurPost, DateDerniereModifPost, ChapoPost FROM Post ORDER BY IdPost DESC;';
         $result = $connexion->query($sql);
         $articles = [];
         foreach ($result as $row){
@@ -37,7 +37,7 @@ class PostDAO extends DAO
     {
         $db = new DAO();
         $connexion = $db->getConnection();
-        $sql = 'SELECT IdPost, NomPost, ContenuPost, AuteurPost, DateCreationPost FROM post WHERE idPost ='.$articleId.';';
+        $sql = 'SELECT IdPost, NomPost, ContenuPost, AuteurPost, DateDerniereModifPost, ChapoPost FROM Post WHERE IdPost ='.$articleId.';';
         // var_dump($sql);
         $result = $connexion->query($sql);
         $article = [];
@@ -46,6 +46,7 @@ class PostDAO extends DAO
             $article[$articleId] = $this->buildObject($row);
         }
         $result->closeCursor();
+        // var_dump($article);
         return $article;
     }
 
@@ -53,7 +54,7 @@ class PostDAO extends DAO
     {
         $db = new DAO();
         $connexion = $db->getConnection();
-        $sql = 'SELECT IdPost, NomPost, ContenuPost, AuteurPost, DateDerniereModifPost, ChapoPost FROM post where IdUtilisateur = '.$idAuteur.' ORDER BY IdPost DESC;';
+        $sql = 'SELECT IdPost, NomPost, ContenuPost, AuteurPost, DateDerniereModifPost, ChapoPost FROM Post where IdUtilisateur = '.$idAuteur.' ORDER BY IdPost DESC;';
         $data = $connexion->query($sql);
         $articles = [];
         foreach ($data as $row){
@@ -67,12 +68,12 @@ class PostDAO extends DAO
     public function addArticle($post, $authorId){
         $db = new DAO();
         $connexion = $db->getConnection();
-        $sqlAuthorPost = 'select NomUtilisateur from utilisateur where IdUtilisateur ='.$authorId.';';
+        $sqlAuthorPost = 'select NomUtilisateur from Utilisateur where IdUtilisateur ='.$authorId.';';
         $dataAuthorPost = $connexion->query($sqlAuthorPost);
         $authorPost = $dataAuthorPost->fetch();
         // var_dump($auteurPost);
         $date = date('Y-m-d');
-        $sql = 'INSERT INTO post ( NomPost, ChapoPost, ContenuPost, AuteurPost, DateCreationPost, DateDerniereModifPost, IdUtilisateur) 
+        $sql = 'INSERT INTO Post ( NomPost, ChapoPost, ContenuPost, AuteurPost, DateCreationPost, DateDerniereModifPost, IdUtilisateur) 
         VALUES ("'.$post->get('titre').'","'.$post->get('chapo').'","'.$post->get('contenu').'","'.$authorPost['NomUtilisateur'].'","'.$date.'","'.$date.'",'.$authorId.');';
         // var_dump($sql);
         $data = $connexion->query($sql);
@@ -82,7 +83,7 @@ class PostDAO extends DAO
     public function remArticle($articleId){
         $db = new DAO();
         $connexion = $db->getConnection();
-        $sql = 'delete from post where IdPost = '.$articleId.';';
+        $sql = 'delete from Post where IdPost = '.$articleId.';';
         $data = $connexion->query($sql);
         $data->closeCursor();
     }
@@ -91,7 +92,7 @@ class PostDAO extends DAO
         $db = new DAO();
         $connexion = $db->getConnection();
         $date = date('Y-m-d');
-        $sql = 'update post set NomPost = "'.$post->get('titre').'", ChapoPost = "'.$post->get('chapo').'", ContenuPost = "'.$post->get('contenu').'", AuteurPost = "'.$post->get('auteur').'", DateDerniereModifPost = "'.$date.'"
+        $sql = 'update Post set NomPost = "'.$post->get('titre').'", ChapoPost = "'.$post->get('chapo').'", ContenuPost = "'.$post->get('contenu').'", AuteurPost = "'.$post->get('auteur').'", DateDerniereModifPost = "'.$date.'"
         where IdPost = '.$articleId.';';
         $data = $connexion->query($sql);
         $data->closeCursor();
@@ -100,7 +101,7 @@ class PostDAO extends DAO
     public function getEditArticle($articleId){
         $db = new DAO();
         $connexion = $db->getConnection();
-        $sql = 'SELECT IdPost, NomPost, ChapoPost, ContenuPost, AuteurPost FROM post where IdPost = '.$articleId.';';
+        $sql = 'SELECT IdPost, NomPost, ChapoPost, ContenuPost, AuteurPost FROM Post where IdPost = '.$articleId.';';
         // var_dump($sql);
         $data = $connexion->query($sql);
         $result = $data->fetch();
@@ -111,7 +112,7 @@ class PostDAO extends DAO
     public function getArticleModifAuteur($articleId){
         $db = new DAO();
         $connexion = $db->getConnection();
-        $sql = 'SELECT IdPost, NomPost, ChapoPost, ContenuPost, AuteurPost FROM post where IdPost = '.$articleId.';';
+        $sql = 'SELECT IdPost, NomPost, ChapoPost, ContenuPost, AuteurPost FROM Post where IdPost = '.$articleId.';';
         // var_dump($sql);
         $data = $connexion->query($sql);
         $result = $data->fetch();
