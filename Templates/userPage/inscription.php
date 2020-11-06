@@ -15,14 +15,14 @@ $this->title = "Inscription";
             <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
                 <label>Nom</label>
-                <input type="text" class="form-control" placeholder="Nom" name="nom" id="nom" required data-validation-required-message="Veuillez entrer votre nom.">
+                <input type="text" class="form-control" placeholder="Nom" name="name" id="name" required data-validation-required-message="Veuillez entrer votre nom.">
                 <p class="help-block text-danger"></p>
                 </div>
             </div>
             <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
                 <label>Prénom</label>
-                <input type="text" class="form-control" placeholder="Prénom" name="prenom" id="prenom" required data-validation-required-message="Veuillez entrer votre prénom.">
+                <input type="text" class="form-control" placeholder="Prénom" name="lastName" id="lastName" required data-validation-required-message="Veuillez entrer votre prénom.">
                 <p class="help-block text-danger"></p>
                 </div>
             </div>

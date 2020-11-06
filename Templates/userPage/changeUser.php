@@ -13,22 +13,22 @@ $this->userConnect = $userConnect;
                     <form id="formulaireModifArticle" action="../public/index.php?route=editUser" method="post" >
                         <div class="form-group floating-label-form-group controls">
                             <label>Nom : </label>
-                            <input type="text" class="form-control" placeholder="Nom" name="nom" id="nom" value="<?= htmlspecialchars($user['NomUtilisateur']); ?>" required data-validation-required-message="Veuillez entrer votre nom.">
+                            <input type="text" class="form-control" placeholder="Nom" name="name" id="name" value="<?= htmlspecialchars($user['NomUtilisateur']); ?>" required data-validation-required-message="Veuillez entrer votre nom.">
                             <p class="help-block text-danger"></p>
                         </div> 
                         <div class="form-group floating-label-form-group controls">
                             <label>Prénom: </label>
-                            <input type="text" class="form-control" placeholder="Prénom" name="prenom" id="prenom" value="<?= htmlspecialchars($user['PrenomUtilisateur']); ?>" required data-validation-required-message="Veuillez entrer votre prénom.">
+                            <input type="text" class="form-control" placeholder="Prénom" name="lastName" id="lastName" value="<?= htmlspecialchars($user['PrenomUtilisateur']); ?>" required data-validation-required-message="Veuillez entrer votre prénom.">
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="form-group floating-label-form-group controls">
                             <label>Code postale: </label>
-                            <input type="text" class="form-control" placeholder="Code postale" name="codePostale" id="codePostale" value="<?= htmlspecialchars($user['CodePostaleUtilisateur']); ?>" required data-validation-required-message="Veuillez entrer votre code postale.">
+                            <input type="text" class="form-control" placeholder="Code postale" name="postCode" id="postCode" value="<?= htmlspecialchars($user['CodePostaleUtilisateur']); ?>" required data-validation-required-message="Veuillez entrer votre code postale.">
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="form-group floating-label-form-group controls">
                             <label>Ville: </label>
-                            <input type="text" class="form-control" placeholder="Ville" name="ville" id="ville" value="<?= htmlspecialchars($user['VilleUtilisateur']); ?>" required data-validation-required-message="Veuillez entrer votre ville.">
+                            <input type="text" class="form-control" placeholder="Ville" name="town" id="town" value="<?= htmlspecialchars($user['VilleUtilisateur']); ?>" required data-validation-required-message="Veuillez entrer votre ville.">
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="form-group floating-label-form-group controls">

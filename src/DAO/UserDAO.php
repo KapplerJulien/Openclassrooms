@@ -11,7 +11,7 @@ class UserDAO extends DAO
         $db = new DAO();
         $connexion = $db->getConnection();
         $sql = 'INSERT INTO Utilisateur ( NomUtilisateur, PrenomUtilisateur, AdresseUtilisateur, Adresse2Utilisateur, EtageUtilisateur, NumBatimentUtilisateur, CodePostaleUtilisateur, VilleUtilisateur, TelUtilisateur, MailUtilisateur, VerifMailUtilisateur, PseudoUtilisateur, MdpUtilisateur, IdTypeUtilisateur) 
-        VALUES ("'.$post->get('nom').'","'.$post->get('prenom').'","","",0,0,0,"",0000000000,"'.$post->get('email').'",true,"'.$post->get('pseudo').'" ,"'.password_hash($post->get('password'),PASSWORD_BCRYPT).'" ,2);';
+        VALUES ("'.$post->get('name').'","'.$post->get('lastName').'","","",0,0,0,"",0000000000,"'.$post->get('email').'",true,"'.$post->get('pseudo').'" ,"'.password_hash($post->get('password'),PASSWORD_BCRYPT).'" ,2);';
         // var_dump($sql);
         $data = $connexion->query($sql);
         $data->closeCursor();
@@ -47,7 +47,7 @@ class UserDAO extends DAO
             $isPasswordValid = false;
         }*/
         $userTypeId = $result['IdTypeUtilisateur'];
-        $isPasswordValid = password_verify($post->get('motdepasse'), $result['MdpUtilisateur']);
+        $isPasswordValid = password_verify($post->get('password'), $result['MdpUtilisateur']);
         $data->closeCursor();
         return [
             'result' => $result,
@@ -73,7 +73,7 @@ class UserDAO extends DAO
     public function setUser($post, $id){
         $db = new DAO();
         $connexion = $db->getConnection();
-        $sql = 'update Utilisateur set NomUtilisateur = "'.$post->get('nom').'", PrenomUtilisateur = "'.$post->get('prenom').'", CodePostaleUtilisateur = '.$post->get('codePostale').', VilleUtilisateur = "'.$post->get('ville').'", MailUtilisateur = "'.$post->get('email').'"
+        $sql = 'update Utilisateur set NomUtilisateur = "'.$post->get('name').'", PrenomUtilisateur = "'.$post->get('lastName').'", CodePostaleUtilisateur = '.$post->get('postCode').', VilleUtilisateur = "'.$post->get('town').'", MailUtilisateur = "'.$post->get('email').'"
         where IdUtilisateur = '.$id.';';
         // var_dump($sql);
         $data = $connexion->query($sql);

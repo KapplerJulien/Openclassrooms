@@ -120,10 +120,11 @@ class FrontController extends Controller
             if($verifPseudo){
                 // var_dump('register dans le if');
                 $this->userDAO->register($post);
-                $this->session->set('register', 'Votre inscription a bien été effectuée.');
+                $testRegister['register'] = 'Votre inscription a bien été effectuée.';
                 // header('Location: ./index.php'); 
-                return $this->view->render('inscription', 'userPage', [
-                    'userConnect' => $userConnect
+                return $this->view->render('connexion', 'userPage', [
+                    'userConnect' => $userConnect,
+                    'testRegister' => $testRegister
                 ]);
             } else {
                 $testRegister['errorRegister'] = "Le pseudo est déjà utilisé, veuillez en choisir un autre.";
@@ -143,7 +144,7 @@ class FrontController extends Controller
     public function login(Parameter $post)
     {
         $idTypeUser = 0;
-        if($post->get('boutonVal')) {
+        if($post->get('valButton')) {
             $result = $this->userDAO->login($post);
             // var_dump($result['isPasswordValid']);
             if($result && $result['isPasswordValid']) {
@@ -207,7 +208,7 @@ class FrontController extends Controller
 
     public function addArticle(Parameter $post){
         // var_dump("test");
-        if($post->get('boutonVal')) {
+        if($post->get('valButton')) {
             // echo('register dans le if');
             $this->postDAO->addArticle($post, $this->session->get('id'));
             // $this->session->set('register', 'Votre inscription a bien été effectuée');
@@ -261,14 +262,14 @@ class FrontController extends Controller
     }
 
     public function commentArticle($post, $articleId){
-        if($post->get('boutonVal')) {
+        $article = $this->postDAO->getArticle($articleId);
+        $comments = $this->commentDAO->getArticleComment($articleId);
+        $userConnect = $this->testConnect();
+        $sumComment = $this->commentDAO->getSumComment('postComment',$articleId);
+        if($post->get('valButton')) {
             // var_dump($post);
             $ajout = $this->commentDAO->addCom($post, $articleId, $this->session->get('id'));
-            $article = $this->postDAO->getArticle($articleId);
-            $comments = $this->commentDAO->getArticleComment($articleId);
-            $userConnect = $this->testConnect();
-            $sumComment = $this->commentDAO->getSumComment('postComment',$articleId);
-
+            
             return $this->view->render('article', 'mainPage', [
                 'article' => $article,
                 'userConnect' => $userConnect,
@@ -276,6 +277,12 @@ class FrontController extends Controller
                 'sumComment' => $sumComment
             ]);
         }
+        return $this->view->render('article', 'mainPage', [
+            'article' => $article,
+            'userConnect' => $userConnect,
+            'comments' => $comments, 
+            'sumComment' => $sumComment
+        ]);
     }
 
     public function editUser($post){

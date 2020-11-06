@@ -10,8 +10,10 @@ $this->userConnect = $userConnect;
             <form id="formulaireConnexion" action="../public/index.php?route=login" method="post" >
                 <div class="control-group">
                 <?php
-                    if(isset($testConnexion['errorLogin'])){
-                        echo $testConnexion['errorLogin'];
+                    if(isset($testConnexion['errorLogin'])){ ?>
+                        <?= $testConnexion['errorLogin'];
+                    } else if(isset($testRegister['register'])){ ?>
+                        <?= $testRegister['register'];
                     }
                     // var_dump($_POST['pseudo']);
                     // var_dump($_POST['motdepasse']);
@@ -23,7 +25,7 @@ $this->userConnect = $userConnect;
                         </div>
                         <div class="form-group floating-label-form-group controls">
                             <label>Mot de passe *</label>
-                            <input type="password" class="form-control" placeholder="Mot de passe" name="motdepasse" id="motdepasse" required data-validation-required-message="Veuillez entrer votre mot de passe.">
+                            <input type="password" class="form-control" placeholder="Mot de passe" name="password" id="password" required data-validation-required-message="Veuillez entrer votre mot de passe.">
                             <p class="help-block text-danger"></p>
                         </div>
                 </div>
@@ -32,7 +34,7 @@ $this->userConnect = $userConnect;
                 </div>  -->
                 </br>
                 <div class="formConnexionBoutonVal">
-                    <input type="submit" class="btn btn-primary" name="boutonVal" id="boutonVal" value="Envoyez"> 
+                    <input type="submit" class="btn btn-primary" name="valButton" id="valButton" value="Envoyez"> 
                     
                 </div>
             </form>

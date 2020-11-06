@@ -74,7 +74,7 @@ class PostDAO extends DAO
         // var_dump($auteurPost);
         $date = date('Y-m-d');
         $sql = 'INSERT INTO Post ( NomPost, ChapoPost, ContenuPost, AuteurPost, DateCreationPost, DateDerniereModifPost, IdUtilisateur) 
-        VALUES ("'.$post->get('titre').'","'.$post->get('chapo').'","'.$post->get('contenu').'","'.$authorPost['NomUtilisateur'].'","'.$date.'","'.$date.'",'.$authorId.');';
+        VALUES ("'.$post->get('title').'","'.$post->get('header').'","'.$post->get('content').'","'.$authorPost['NomUtilisateur'].'","'.$date.'","'.$date.'",'.$authorId.');';
         // var_dump($sql);
         $data = $connexion->query($sql);
         $data->closeCursor();
@@ -92,7 +92,7 @@ class PostDAO extends DAO
         $db = new DAO();
         $connexion = $db->getConnection();
         $date = date('Y-m-d');
-        $sql = 'update Post set NomPost = "'.$post->get('titre').'", ChapoPost = "'.$post->get('chapo').'", ContenuPost = "'.$post->get('contenu').'", AuteurPost = "'.$post->get('auteur').'", DateDerniereModifPost = "'.$date.'"
+        $sql = 'update Post set NomPost = "'.$post->get('title').'", ChapoPost = "'.$post->get('header').'", ContenuPost = "'.$post->get('content').'", AuteurPost = "'.$post->get('author').'", DateDerniereModifPost = "'.$date.'"
         where IdPost = '.$articleId.';';
         $data = $connexion->query($sql);
         $data->closeCursor();

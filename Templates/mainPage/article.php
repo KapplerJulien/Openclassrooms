@@ -89,7 +89,7 @@ $this->userConnect = $userConnect;
                             </div>
                         </div>
                         <div class="formCommentaireBoutonVal">
-                            <input type="submit" class="btn btn-primary" name="boutonVal" id="boutonVal" value="Envoyez"> 
+                            <input type="submit" class="btn btn-primary" name="valButton" id="valButton" value="Envoyez"> 
                         </div>
                         </form>
                     </div>
