@@ -68,3 +68,7 @@ Type : Auteur
 Pseudo : MarteM  
 Mdp : #feaO570  
 Type : Administrateur  
+
+## Code climate
+
+![code climate](https://i.imgur.com/TJYC968.png)
